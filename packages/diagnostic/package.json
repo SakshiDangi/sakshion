@@ -1,0 +1,14 @@
+{
+  "name": "@sakshion/diagnostic",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"No tests yet\"",
+    "lint": "echo \"No lint yet\""
+  }
+}

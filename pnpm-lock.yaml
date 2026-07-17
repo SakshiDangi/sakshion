@@ -220,6 +220,28 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
+  packages/analytics: {}
+
+  packages/database: {}
+
+  packages/diagnostic: {}
+
+  packages/digital-twin: {}
+
+  packages/finality: {}
+
+  packages/knowledge-graph: {}
+
+  packages/practice: {}
+
+  packages/roadmap: {}
+
+  packages/shared: {}
+
+  packages/tutor: {}
+
+  packages/ui: {}
+
 packages:
 
   '@eslint-community/eslint-utils@4.9.1':
