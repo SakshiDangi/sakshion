@@ -10,5 +10,12 @@
     "typecheck": "tsc --noEmit",
     "test": "echo \"No tests yet\"",
     "lint": "echo \"No lint yet\""
+  },
+    "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "zod": "^4",
+    "nanoid": "^5"
   }
 }
