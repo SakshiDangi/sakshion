@@ -1,17 +1,49 @@
-# @Sakshion/shared
+# @sakshion/shared
 
-Shared types, schemas, utilities and contracts used by every Sakshion package.
+The framework-agnostic shared foundation for Sakshion.
 
-This package contains no business logic.
+This package contains reusable contracts and primitives shared across the Sakshion architecture.
 
-Responsibilities:
+## Responsibilities
 
-- Types
-- Validation
+- Shared domain types
+- Runtime validation schemas
 - Constants
 - Enums
-- Result objects
-- Errors
-- Utilities
+- API contracts
+- Result types
+- Common errors
+- Generic utilities
 
-Framework independent.
+## Dependency Rules
+
+This package must remain framework-agnostic.
+
+### Allowed
+
+- Zod
+- Nanoid
+
+### Not allowed
+
+- Next.js
+- React
+- OpenAI SDKs
+- Database clients
+- Drizzle
+- Prisma
+- Knowledge Graph business logic
+- Finality business logic
+
+## Usage
+
+Import from the package root:
+
+```ts
+import {
+  Student,
+  StudentSchema,
+  LearningEventType,
+  ok,
+  err,
+} from "@sakshion/shared";
