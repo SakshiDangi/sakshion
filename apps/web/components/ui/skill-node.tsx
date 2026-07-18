@@ -1,9 +1,7 @@
 import {
-Card,
-CardContent
-}
-from "@/components/ui/card";
-
+  Card,
+  CardContent
+} from "@/components/ui/card";
 
 export default function SkillNode({
 name,

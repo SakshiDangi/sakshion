@@ -18,7 +18,7 @@ export class AppError extends Error {
 
   public readonly details?: unknown;
 
-  public readonly cause?: unknown;
+  public override readonly cause?: unknown;
 
   constructor(options: AppErrorOptions) {
     super(options.message);

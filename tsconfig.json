@@ -4,17 +4,27 @@
   "compilerOptions": {
     "target": "ES2022",
 
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+
     "module": "ESNext",
 
     "moduleResolution": "Bundler",
 
-    "lib": [
-      "ES2022"
-    ],
+    "jsx": "preserve",
+
+    "verbatimModuleSyntax": true,
 
     "strict": true,
 
-    "incremental": true,
+    "noImplicitOverride": true,
+
+    "noUncheckedIndexedAccess": true,
+
+    "exactOptionalPropertyTypes": true,
 
     "esModuleInterop": true,
 
@@ -22,16 +32,23 @@
 
     "resolveJsonModule": true,
 
+    "incremental": true,
+
+    "composite": true,
+
     "isolatedModules": true,
 
     "forceConsistentCasingInFileNames": true,
 
     "skipLibCheck": true,
 
-    "noEmit": true,
-
-    "baseUrl": "."
+    "noEmit": true
   },
+
+  "include": [
+    "apps/*",
+    "packages/*"
+  ],
 
   "exclude": [
     "node_modules",

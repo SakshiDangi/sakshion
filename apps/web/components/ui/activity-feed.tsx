@@ -1,8 +1,7 @@
 import {
-Card,
-CardContent
-}
-from "@/components/ui/card";
+  Card,
+  CardContent
+} from "@/components/ui/card";
 
 
 interface Activity {
