@@ -57,3 +57,6 @@ export {
   HistoryTracker
 } from "./progress/HistoryTracker";
 
+export {
+  XPManager
+} from "./xp/XPManager";

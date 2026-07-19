@@ -1,32 +1,80 @@
-export class XPManager{
+export class XPManager {
 
 
-lessonComplete(xp:number){
-
-return xp+25;
-
-}
-
-
-practiceComplete(xp:number){
-
-return xp+50;
-
-}
+  /**
+   * Diagnostic completion reward
+   */
+  static diagnosticCompleted(
+    currentXP:number
+  ):number {
 
 
-diagnostic(xp:number){
+    return currentXP + 100;
 
-return xp+100;
-
-}
+  }
 
 
-login(xp:number){
 
-return xp+10;
+  /**
+   * Lesson completion reward
+   */
+  static lessonCompleted(
+    currentXP:number
+  ):number {
 
-}
+
+    return currentXP + 25;
+
+  }
+
+
+
+  /**
+   * Practice completion reward
+   */
+  static practiceCompleted(
+    currentXP:number
+  ):number {
+
+
+    return currentXP + 50;
+
+  }
+
+
+
+  /**
+   * Daily login reward
+   */
+  static dailyLogin(
+    currentXP:number
+  ):number {
+
+
+    return currentXP + 10;
+
+  }
+
+
+
+  /**
+   * Safe XP update
+   *
+   * Prevent negative XP
+   */
+  static update(
+    currentXP:number,
+    amount:number
+  ):number {
+
+
+    return Math.max(
+      0,
+      currentXP + amount
+    );
+
+
+  }
 
 
 }
