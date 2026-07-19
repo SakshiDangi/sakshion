@@ -1,13 +1,14 @@
 import {
- ROADMAP_CONSTANTS
+  ROADMAP_CONSTANTS
 } from "../utils/constants";
 
-export interface PriorityInput {
 
+export interface PriorityInput {
   mastery:number;
   confidence:number;
   difficulty:number;
 }
+
 
 export class PriorityCalculator {
 
@@ -16,22 +17,22 @@ export class PriorityCalculator {
   ):number {
 
     const weights =
-     ROADMAP_CONSTANTS.PRIORITY_WEIGHTS;
+      ROADMAP_CONSTANTS.PRIORITY_WEIGHTS;
 
     const masteryScore =
       (100 - input.mastery)
       *
-      masteryWeight;
+      weights.MASTERY;
 
     const confidenceScore =
       (100 - input.confidence)
       *
-      confidenceWeight;
+      weights.CONFIDENCE;
 
     const difficultyScore =
       input.difficulty
       *
-      difficultyWeight;
+      weights.DIFFICULTY;
 
     return Math.round(
 
@@ -42,9 +43,6 @@ export class PriorityCalculator {
       difficultyScore
 
     );
-
-
   }
-
 
 }
