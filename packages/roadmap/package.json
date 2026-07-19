@@ -8,7 +8,16 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"No tests yet\"",
+    "test": "vitest run",
     "lint": "echo \"No lint yet\""
+  },
+  "dependencies": {
+    "@sakshion/digital-twin": "workspace:*",
+    "@sakshion/knowledge-graph": "workspace:*"
+  },
+
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
   }
 }
