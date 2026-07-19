@@ -53,3 +53,15 @@ export {
 export {
   buildHintPrompt
 } from "./prompts/HintPrompt";
+
+export {
+  LessonGenerator
+} from "./lesson/LessonGenerator";
+
+export {
+  LessonFormatter
+} from "./lesson/LessonFormatter";
+
+export type {
+  LessonGenerationInput
+} from "./lesson/LessonGenerator";
