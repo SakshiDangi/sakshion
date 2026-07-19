@@ -10,5 +10,11 @@
     "typecheck": "tsc --noEmit",
     "test": "echo \"No tests yet\"",
     "lint": "echo \"No lint yet\""
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   }
 }

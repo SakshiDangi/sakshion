@@ -1,0 +1,7 @@
+export enum RelationshipType {
+  PREREQUISITE = "PREREQUISITE",
+
+  RELATED = "RELATED",
+
+  REINFORCES = "REINFORCES",
+}
