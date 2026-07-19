@@ -83,3 +83,11 @@ export type {
   EstimationInput,
   CompletionEstimate
 } from "./estimation/CompletionEstimator";
+
+export {
+  RoadmapValidator
+} from "./validation/RoadmapValidator";
+
+export type {
+  ValidationResult
+} from "./validation/RoadmapValidator";
