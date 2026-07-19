@@ -42,3 +42,11 @@ export type {
   Prerequisite,
   UnlockInput
 } from "./unlock/UnlockEngine";
+
+export {
+  RecommendationEngine
+} from "./recommendation/RecommendationEngine";
+
+export type {
+  CandidateConcept
+} from "./recommendation/RecommendationEngine";
