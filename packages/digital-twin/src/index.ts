@@ -49,3 +49,11 @@ export {
   ConfidenceUpdater
 } from "./confidence/ConfidenceUpdater";
 
+export {
+  ProgressTracker
+} from "./progress/ProgressTracker";
+
+export {
+  HistoryTracker
+} from "./progress/HistoryTracker";
+
