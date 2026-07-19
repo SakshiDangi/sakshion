@@ -21,3 +21,10 @@ export type {
   HintLevel
 } from "./models/Hint";
 
+export {
+  TutorSessionManager
+} from "./session/TutorSessionManager";
+
+export type {
+  CreateSessionInput
+} from "./session/TutorSessionManager";
