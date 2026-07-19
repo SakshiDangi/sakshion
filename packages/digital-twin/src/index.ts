@@ -77,3 +77,6 @@ export type {
   LearnerInsight
 } from "./insights/InsightGenerator";
 
+export {
+  DigitalTwinService
+} from "./services/DigitalTwinService";
