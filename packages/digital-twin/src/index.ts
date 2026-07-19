@@ -60,3 +60,11 @@ export {
 export {
   XPManager
 } from "./xp/XPManager";
+
+export {
+  StreakManager
+} from "./streak/StreakManager";
+
+export type {
+  StreakState
+} from "./streak/StreakManager";
