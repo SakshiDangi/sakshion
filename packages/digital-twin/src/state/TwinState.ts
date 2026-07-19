@@ -1,34 +1,129 @@
+import type { DigitalTwin } from "../models/DigitalTwin";
+
+
 export interface InitialConceptAssessment {
 
-  /**
-   * Knowledge graph concept id
-   */
-  conceptId: string;
+  conceptId:string;
 
-
-  /**
-   * Initial mastery from diagnostic
-   *
-   * 0-100
-   */
-  mastery: number;
+  mastery:number;
 
 }
 
 
+
 export interface TwinCreationInput {
 
+  studentId:string;
+
+  assessments:InitialConceptAssessment[];
+
+}
+
+
+
+/**
+ * Immutable Digital Twin operations
+ */
+export class TwinState {
+
 
   /**
-   * Learner identifier
+   * Create a new twin with updated values
+   *
+   * Original twin remains unchanged
    */
-  studentId: string;
+  static update(
+    twin:DigitalTwin,
+    changes:Partial<DigitalTwin>
+  ):DigitalTwin {
+
+
+    return {
+
+      ...twin,
+
+      ...changes,
+
+      updatedAt:new Date()
+
+    };
+
+
+  }
 
 
 
   /**
-   * Initial diagnostic results
+   * Update learning state
    */
-  assessments: InitialConceptAssessment[];
+  static updateLearningState(
+    twin:DigitalTwin,
+    state:Partial<DigitalTwin["learningState"]>
+  ):DigitalTwin {
+
+
+    return {
+
+
+      ...twin,
+
+
+      learningState:{
+
+
+        ...twin.learningState,
+
+
+        ...state,
+
+
+        lastUpdated:new Date()
+
+
+      },
+
+
+      updatedAt:new Date()
+
+
+    };
+
+
+  }
+
+
+
+  /**
+   * Add history snapshot
+   */
+  static addSnapshot(
+    twin:DigitalTwin,
+    snapshot:DigitalTwin["history"][number]
+  ):DigitalTwin {
+
+
+    return {
+
+
+      ...twin,
+
+
+      history:[
+
+        ...twin.history,
+
+        snapshot
+
+      ],
+
+
+      updatedAt:new Date()
+
+
+    };
+
+
+  }
+
 
 }

@@ -28,6 +28,16 @@ export {
 
 
 export type {
+  TwinState,
   TwinCreationInput,
   InitialConceptAssessment
 } from "./state/TwinState";
+
+export {
+  MasteryCalculator
+} from "./mastery/MasteryCalculator";
+
+export {
+  MasteryUpdater
+} from "./mastery/MasteryUpdater";
+
