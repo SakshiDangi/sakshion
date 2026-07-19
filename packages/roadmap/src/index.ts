@@ -33,3 +33,12 @@ export {
 export type {
   ConceptInput
 } from "./planner/RoadmapPlanner";
+
+export {
+  UnlockEngine
+} from "./unlock/UnlockEngine";
+
+export type {
+  Prerequisite,
+  UnlockInput
+} from "./unlock/UnlockEngine";
