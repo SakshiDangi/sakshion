@@ -91,3 +91,7 @@ export {
 export type {
   ValidationResult
 } from "./validation/RoadmapValidator";
+
+export {
+  RoadmapService
+} from "./services/RoadmapService";
