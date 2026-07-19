@@ -21,3 +21,13 @@ export type {
 export type {
   ProgressSnapshot
 } from "./models/ProgressSnapshot";
+
+export {
+  TwinFactory
+} from "./state/TwinFactory";
+
+
+export type {
+  TwinCreationInput,
+  InitialConceptAssessment
+} from "./state/TwinState";
