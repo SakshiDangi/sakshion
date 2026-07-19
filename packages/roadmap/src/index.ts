@@ -74,3 +74,12 @@ export {
 export type {
   ConceptDependency
 } from "./sequencing/LearningSequence";
+
+export {
+  CompletionEstimator
+} from "./estimation/CompletionEstimator";
+
+export type {
+  EstimationInput,
+  CompletionEstimate
+} from "./estimation/CompletionEstimator";
