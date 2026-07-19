@@ -95,3 +95,13 @@ export type {
 export {
   RoadmapService
 } from "./services/RoadmapService";
+
+export {
+  ROADMAP_CONSTANTS
+} from "./utils/constants";
+
+export {
+  clamp,
+  average,
+  unique
+} from "./utils/helpers";
