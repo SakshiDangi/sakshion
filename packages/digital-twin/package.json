@@ -7,8 +7,15 @@
   "types": "./src/index.ts",
   "scripts": {
     "build": "tsc",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"No tests yet\"",
     "lint": "echo \"No lint yet\""
+  },
+    "dependencies": {
+    "@sakshion/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
   }
 }
