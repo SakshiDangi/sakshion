@@ -68,3 +68,12 @@ export {
 export type {
   StreakState
 } from "./streak/StreakManager";
+
+export {
+  InsightGenerator
+} from "./insights/InsightGenerator";
+
+export type {
+  LearnerInsight
+} from "./insights/InsightGenerator";
+
