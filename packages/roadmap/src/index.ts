@@ -50,3 +50,19 @@ export {
 export type {
   CandidateConcept
 } from "./recommendation/RecommendationEngine";
+
+export {
+  PriorityCalculator
+} from "./ranking/PriorityCalculator";
+
+export type {
+  PriorityInput
+} from "./ranking/PriorityCalculator";
+
+export {
+  DifficultyRanker
+} from "./ranking/DifficultyRanker";
+
+export type {
+  DifficultyInput
+} from "./ranking/DifficultyRanker";
