@@ -80,3 +80,11 @@ export type {
 export {
   DigitalTwinService
 } from "./services/DigitalTwinService";
+
+export {
+  TwinValidator
+} from "./validation/TwinValidator";
+
+export type {
+  ValidationResult
+} from "./validation/TwinValidator";
