@@ -37,3 +37,19 @@ export type {
   TutorContext,
   ContextBuilderInput
 } from "./context/ContextBuilder";
+
+export {
+  SYSTEM_PROMPT
+} from "./prompts/SystemPrompt";
+
+export {
+  buildLessonPrompt
+} from "./prompts/LessonPrompt";
+
+export {
+  buildQuestionPrompt
+} from "./prompts/QuestionPrompt";
+
+export {
+  buildHintPrompt
+} from "./prompts/HintPrompt";
