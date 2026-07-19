@@ -1,60 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
 
-  "compilerOptions": {
-    "target": "ES2022",
+  "extends": "./tsconfig.base.json",
 
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
+  "files": [],
 
-    "module": "ESNext",
-
-    "moduleResolution": "Bundler",
-
-    "jsx": "preserve",
-
-    "verbatimModuleSyntax": true,
-
-    "strict": true,
-
-    "noImplicitOverride": true,
-
-    "noUncheckedIndexedAccess": true,
-
-    "exactOptionalPropertyTypes": true,
-
-    "esModuleInterop": true,
-
-    "allowSyntheticDefaultImports": true,
-
-    "resolveJsonModule": true,
-
-    "incremental": true,
-
-    "composite": true,
-
-    "isolatedModules": true,
-
-    "forceConsistentCasingInFileNames": true,
-
-    "skipLibCheck": true,
-
-    "noEmit": true
-  },
-
-  "include": [
-    "apps/*",
-    "packages/*"
-  ],
-
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".next",
-    ".turbo",
-    "coverage"
+  "references": [
+    { "path": "./packages/database" }
   ]
 }

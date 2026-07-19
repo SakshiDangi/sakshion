@@ -68,3 +68,11 @@ Thumbs.db
 # =============================================================================
 tmp/
 temp/
+
+# Drizzle Studio
+.drizzle
+
+# Coverage
+coverage
+
+.neon
