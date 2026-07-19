@@ -17,3 +17,19 @@ export type {
 export type {
   Recommendation
 } from "./models/Recommendation";
+
+export {
+  RoadmapFactory
+} from "./planner/RoadmapFactory";
+
+export type {
+  RoadmapCreationInput
+} from "./planner/RoadmapFactory";
+
+export {
+  RoadmapPlanner
+} from "./planner/RoadmapPlanner";
+
+export type {
+  ConceptInput
+} from "./planner/RoadmapPlanner";
