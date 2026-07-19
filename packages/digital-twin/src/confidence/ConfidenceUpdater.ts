@@ -1,25 +1,98 @@
-export class ConfidenceUpdater{
+import type {
+  DigitalTwin
+} from "../models/DigitalTwin";
 
 
-update(
-confidence:number,
-success:boolean
-){
-
-const change =
-success ? 4 : -2;
+import {
+  ConfidenceCalculator
+} from "./ConfidenceCalculator";
 
 
-return Math.min(
-100,
-Math.max(
-0,
-confidence+change
-)
-);
+
+export class ConfidenceUpdater {
 
 
-}
+
+  static updateConcept(
+    twin:DigitalTwin,
+    conceptId:string,
+    success:boolean
+  ):DigitalTwin {
+
+
+
+    const current =
+      twin.confidence[conceptId] ??
+      {
+
+
+        conceptId,
+
+
+        confidence:0,
+
+
+        evidenceCount:0,
+
+
+        lastUpdated:new Date()
+
+
+      };
+
+
+
+    const newConfidence =
+      ConfidenceCalculator.calculateNewConfidence(
+        current.confidence,
+        success
+      );
+
+
+
+    return {
+
+
+      ...twin,
+
+
+      confidence:{
+
+
+        ...twin.confidence,
+
+
+        [conceptId]:{
+
+
+          ...current,
+
+
+          confidence:
+            newConfidence,
+
+
+          evidenceCount:
+            current.evidenceCount + 1,
+
+
+          lastUpdated:
+            new Date()
+
+        }
+
+
+      },
+
+
+      updatedAt:
+        new Date()
+
+
+    };
+
+
+  }
 
 
 }

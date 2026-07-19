@@ -41,3 +41,11 @@ export {
   MasteryUpdater
 } from "./mastery/MasteryUpdater";
 
+export {
+  ConfidenceCalculator
+} from "./confidence/ConfidenceCalculator";
+
+export {
+  ConfidenceUpdater
+} from "./confidence/ConfidenceUpdater";
+
