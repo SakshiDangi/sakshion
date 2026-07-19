@@ -66,3 +66,11 @@ export {
 export type {
   DifficultyInput
 } from "./ranking/DifficultyRanker";
+
+export {
+  LearningSequence
+} from "./sequencing/LearningSequence";
+
+export type {
+  ConceptDependency
+} from "./sequencing/LearningSequence";
