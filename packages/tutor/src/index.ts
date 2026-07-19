@@ -28,3 +28,12 @@ export {
 export type {
   CreateSessionInput
 } from "./session/TutorSessionManager";
+
+export {
+  ContextBuilder
+} from "./context/ContextBuilder";
+
+export type {
+  TutorContext,
+  ContextBuilderInput
+} from "./context/ContextBuilder";
