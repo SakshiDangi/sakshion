@@ -10,5 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "echo \"No tests yet\"",
     "lint": "echo \"No lint yet\""
+  },
+    "exports": {
+    ".": "./src/index.ts"
   }
 }
