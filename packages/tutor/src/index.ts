@@ -83,3 +83,11 @@ export {
 export type {
   HintInput
 } from "./hints/HintGenerator";
+
+export {
+  ResponseValidator
+} from "./validation/ResponseValidator";
+
+export type {
+  ValidationResult
+} from "./validation/ResponseValidator";
