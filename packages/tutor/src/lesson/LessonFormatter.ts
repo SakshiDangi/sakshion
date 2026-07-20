@@ -17,38 +17,27 @@ export class LessonFormatter {
 
 
       title:
-        input.title ??
-        "Untitled Lesson",
-
+        input.title ?? "Untitled Lesson",
 
 
       objective:
-        input.objective ??
-        "Understand the concept",
-
+        input.objective ?? "Understand the concept",
 
 
       content:
-        input.content ??
-        "",
-
+        input.content ?? "",
 
 
       examples:
-        input.examples ??
-        [],
-
+        input.examples ?? [],
 
 
       commonMistakes:
-        input.commonMistakes ??
-        [],
-
+        input.commonMistakes ?? [],
 
 
       summary:
-        input.summary ??
-        ""
+        input.summary ?? ""
 
 
     };

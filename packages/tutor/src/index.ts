@@ -65,3 +65,14 @@ export {
 export type {
   LessonGenerationInput
 } from "./lesson/LessonGenerator";
+
+export {
+  ExplanationGenerator
+} from "./explanation/ExplanationGenerator";
+
+export type {
+  Explanation,
+  ExplanationInput,
+  ExplanationLevel
+} from "./explanation/ExplanationGenerator";
+

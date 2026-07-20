@@ -43,35 +43,39 @@ export class LessonGenerator {
   ):Lesson {
 
 
+    const lessonData:Partial<Lesson> = {
+
+
+      title:
+        input.title,
+
+
+      objective:
+        input.objective,
+
+
+      content:
+        input.content,
+
+
+      examples:
+        input.examples ?? [],
+
+
+      commonMistakes:
+        input.commonMistakes ?? [],
+
+
+      summary:
+        input.summary ?? ""
+
+
+    };
+
+
+
     return LessonFormatter.format(
-
-      {
-
-        title:
-          input.title,
-
-
-        objective:
-          input.objective,
-
-
-        content:
-          input.content,
-
-
-        examples:
-          input.examples,
-
-
-        commonMistakes:
-          input.commonMistakes,
-
-
-        summary:
-          input.summary
-
-      }
-
+      lessonData
     );
 
 
