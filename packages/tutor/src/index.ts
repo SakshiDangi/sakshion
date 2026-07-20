@@ -76,3 +76,10 @@ export type {
   ExplanationLevel
 } from "./explanation/ExplanationGenerator";
 
+export {
+  HintGenerator
+} from "./hints/HintGenerator";
+
+export type {
+  HintInput
+} from "./hints/HintGenerator";
