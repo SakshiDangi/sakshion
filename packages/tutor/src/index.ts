@@ -91,3 +91,12 @@ export {
 export type {
   ValidationResult
 } from "./validation/ResponseValidator";
+
+export {
+  OpenAIAdapter
+} from "./llm/OpenAIAdapter";
+
+export type {
+  LLMRequest,
+  LLMResponse
+} from "./llm/OpenAIAdapter";

@@ -11,8 +11,9 @@
     "test": "vitest",
     "lint": "echo \"No lint yet\""
   },
-    "dependencies": {},
-
+  "dependencies": {
+    "openai": "^6.48.0"
+  },
   "devDependencies": {
     "typescript": "^5.9.3",
     "vitest": "^4.1.10"
