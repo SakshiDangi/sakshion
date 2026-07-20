@@ -1,0 +1,29 @@
+{
+  "name": "@sakshion/application",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@sakshion/shared": "workspace:*",
+    "@sakshion/database": "workspace:*",
+    "@sakshion/knowledge-graph": "workspace:*",
+    "@sakshion/digital-twin": "workspace:*",
+    "@sakshion/practice": "workspace:*",
+    "@sakshion/finality": "workspace:*",
+    "@sakshion/finality-adapter": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}
