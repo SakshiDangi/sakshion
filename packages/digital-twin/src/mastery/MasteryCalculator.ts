@@ -43,7 +43,6 @@ export class MasteryCalculator {
       this.calculateIncrease(score);
 
 
-
     return Math.min(
       100,
       Math.max(

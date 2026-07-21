@@ -2,23 +2,19 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 
-import {
-  Geist,
-  Geist_Mono,
-} from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus",
+});
+
+const jetBrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 import Providers from "@/providers";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets:["latin"],
-});
-
-
-const geistMono = Geist_Mono({
-  variable:"--font-geist-mono",
-  subsets:["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Sakshion",
@@ -34,11 +30,12 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
       <body
       className={`
-      ${geistSans.variable}
-      ${geistMono.variable}
+      ${plusJakarta.variable}
+      ${jetBrains.variable}
       antialiased
       `}
       >
