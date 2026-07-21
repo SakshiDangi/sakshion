@@ -1,11 +1,23 @@
 {
-  "extends": "../../tsconfig.json",
-    "compilerOptions": {
-    "declaration": true,
+  "extends": "../../tsconfig.base.json",
+
+  "compilerOptions": {
+    "noEmit": false,
+
+    "rootDir": "src",
     "outDir": "dist",
-    "rootDir": "src"
+
+    "declaration": true,
+    "declarationMap": true
   },
+
   "include": [
     "src"
+  ],
+
+  "exclude": [
+    "dist",
+    "tests",
+    "node_modules"
   ]
 }

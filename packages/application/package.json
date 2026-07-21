@@ -14,14 +14,15 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@sakshion/shared": "workspace:*",
-    "@sakshion/database": "workspace:*",
-    "@sakshion/knowledge-graph": "workspace:*",
-    "@sakshion/digital-twin": "workspace:*",
-    "@sakshion/practice": "workspace:*",
-    "@sakshion/finality": "workspace:*",
-    "@sakshion/finality-adapter": "workspace:*"
-  },
+  "@sakshion/shared": "workspace:*",
+  "@sakshion/database": "workspace:*",
+  "@sakshion/knowledge-graph": "workspace:*",
+  "@sakshion/digital-twin": "workspace:*",
+  "@sakshion/practice": "workspace:*",
+  "@sakshion/finality": "workspace:*",
+  "@sakshion/finality-adapter": "workspace:*",
+  "@sakshion/roadmap": "workspace:*"
+},
   "devDependencies": {
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"

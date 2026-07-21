@@ -234,6 +234,18 @@ importers:
       '@base-ui/react':
         specifier: ^1.6.0
         version: 1.6.0(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@sakshion/application':
+        specifier: workspace:*
+        version: link:../../packages/application
+      '@sakshion/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      '@sakshion/practice':
+        specifier: workspace:*
+        version: link:../../packages/practice
+      '@sakshion/roadmap':
+        specifier: workspace:*
+        version: link:../../packages/roadmap
       '@tanstack/react-query':
         specifier: ^5.101.2
         version: 5.101.2(react@19.2.4)
@@ -339,6 +351,9 @@ importers:
       '@sakshion/practice':
         specifier: workspace:*
         version: link:../practice
+      '@sakshion/roadmap':
+        specifier: workspace:*
+        version: link:../roadmap
       '@sakshion/shared':
         specifier: workspace:*
         version: link:../shared

@@ -1,5 +1,17 @@
-import { placeholderResponse } from "@/lib/api/response";
+import {
+  diagnosticService,
+} from "@/lib/services";
+
 
 export async function GET() {
-  return placeholderResponse("Diagnostic");
+
+  const result =
+    diagnosticService.runDiagnostic(
+      "demo-student",
+    );
+
+
+  return Response.json(
+    result,
+  );
 }

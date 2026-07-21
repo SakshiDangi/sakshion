@@ -10,6 +10,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@sakshion/application": "workspace:*",
+    "@sakshion/practice": "workspace:*",
+    "@sakshion/roadmap": "workspace:*",
+    "@sakshion/database": "workspace:*",
     "@base-ui/react": "^1.6.0",
     "@tanstack/react-query": "^5.101.2",
     "class-variance-authority": "^0.7.1",

@@ -1,19 +1,14 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-
-export function middleware(
-  request: NextRequest
+export function proxy(
+  request: NextRequest,
 ) {
-
   const path =
     request.nextUrl.pathname;
 
-
-  // placeholder authentication check
-
+  // Placeholder authentication check
   const isAuthenticated = true;
-
 
   if (
     !isAuthenticated &&
@@ -22,20 +17,16 @@ export function middleware(
       path.startsWith("/teacher")
     )
   ) {
-
     return NextResponse.redirect(
-      new URL("/login", request.url)
+      new URL("/login", request.url),
     );
-
   }
-
 
   return NextResponse.next();
 }
 
-
 export const config = {
-  matcher:[
+  matcher: [
     "/student/:path*",
     "/teacher/:path*",
   ],
