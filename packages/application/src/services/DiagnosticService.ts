@@ -1,6 +1,6 @@
-import type {
-  DiagnosticResponse,
-} from "../models";
+import {
+  MasteryRepository,
+} from "@sakshion/database";
 
 
 import {
@@ -8,26 +8,129 @@ import {
 } from "@sakshion/digital-twin";
 
 
+import {
+  RoadmapService,
+} from "./RoadmapService";
+
+
+import type {
+  DiagnosticResponse,
+} from "../models";
+
+
+import type {
+  ConceptInput,
+} from "@sakshion/roadmap";
+
+
 
 export class DiagnosticService {
 
 
-  runDiagnostic(
-    studentId:string,
-  ):DiagnosticResponse {
+  private readonly masteryRepository =
+    new MasteryRepository();
+
+
+  private readonly roadmapService =
+    new RoadmapService();
+
+
+
+  async runDiagnostic(
+    studentId: string,
+  ): Promise<DiagnosticResponse> {
+
+
+    /**
+     * Load mastery data
+     * from database.
+     */
+    const masteryRecords =
+      await this.masteryRepository.findByStudent(
+        studentId,
+      );
+
+
+
+    /**
+     * New student
+     * without mastery history.
+     */
+    if (
+      masteryRecords.length === 0
+    ) {
+
+      return {
+
+        success: true,
+
+        studentId,
+
+        score: 0,
+
+        mastery: 0,
+
+        recommendedConcepts: [],
+
+      };
+
+    }
+
+
+
+    /**
+     * Calculate average mastery.
+     */
+    const averageMastery =
+      masteryRecords.reduce(
+        (
+          total,
+          record,
+        ) =>
+          total + record.mastery,
+
+        0,
+
+      )
+      /
+      masteryRecords.length;
 
 
 
     const score =
-      60;
+      Math.round(
+        averageMastery,
+      );
 
 
 
-    const mastery =
-      score / 100;
+    /**
+     * Find weakest concepts.
+     *
+     * Lower mastery
+     * gets higher priority.
+     */
+    const weakConcepts =
+      masteryRecords
+      .filter(
+        record =>
+          record.mastery < 70,
+      )
+      .sort(
+        (
+          a,
+          b,
+        ) =>
+          a.mastery -
+          b.mastery,
+      );
 
 
 
+    /**
+     * Create student's
+     * Digital Twin.
+     */
     const twin =
       DigitalTwinService.create({
 
@@ -35,37 +138,83 @@ export class DiagnosticService {
 
 
         assessments:
-          [
-            {
-              conceptId:"functions",
 
-              mastery:0.6,
-            },
+          masteryRecords.map(
+            record => ({
 
-            {
-              conceptId:"loops",
+              conceptId:
+                record.conceptId,
 
-              mastery:0.5,
-            },
 
-            {
-              conceptId:"algorithms",
+              mastery:
+                record.mastery / 100,
 
-              mastery:0.3,
-            },
-          ],
+            }),
+          ),
 
       });
 
 
 
-    void twin;
+    /**
+     * Convert weak concepts
+     * into roadmap planner input.
+     */
+    const concepts:
+      ConceptInput[] =
+
+      weakConcepts.map(
+        record => ({
+
+          conceptId:
+            record.conceptId,
+
+
+          mastery:
+            record.mastery,
+
+
+          /**
+           * Temporary estimate.
+           * Later replace with
+           * DifficultyEstimator.
+           */
+          estimatedMinutes:
+            Math.round(
+              60 -
+              (
+                record.mastery *
+                0.3
+              ),
+            ),
+
+        }),
+      );
 
 
 
+    /**
+     * Generate personalized
+     * roadmap from weaknesses.
+     */
+    await this.roadmapService.generateFromTwin(
+
+      studentId,
+
+      twin,
+
+      concepts,
+
+    );
+
+
+
+    /**
+     * Return diagnostic result.
+     */
     return {
 
-      success:true,
+      success: true,
 
 
       studentId,
@@ -74,17 +223,19 @@ export class DiagnosticService {
       score,
 
 
-      mastery,
+      mastery:
+        averageMastery / 100,
 
 
       recommendedConcepts:
-        [
-          "functions",
-          "loops",
-          "algorithms",
-        ],
+
+        weakConcepts.map(
+          record =>
+            record.conceptId,
+        ),
 
     };
+
 
   }
 

@@ -1,5 +1,6 @@
-import { AppShell } from "@/components/common";
-
+import {
+  AppLayout,
+} from "@/components/design-system";
 
 export default function TeacherLayout({
 children,
@@ -8,13 +9,9 @@ children:React.ReactNode;
 }){
 
 return (
-
-<AppShell>
-
-{children}
-
-</AppShell>
+<AppLayout userRole="instructor">
+  {children}
+</AppLayout>
 
 );
-
 }

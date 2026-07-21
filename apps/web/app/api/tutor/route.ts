@@ -3,6 +3,10 @@ import {
 } from "@/lib/services";
 
 
+import {
+  DEMO_STUDENT_ID,
+} from "@/lib/constants/demo";
+
 
 export async function POST(
   request: Request,
@@ -12,13 +16,11 @@ export async function POST(
     await request.json();
 
 
-
   const prompt =
     body.prompt;
 
 
-
-  if(!prompt){
+  if (!prompt) {
 
     return Response.json(
       {
@@ -26,19 +28,18 @@ export async function POST(
           "Prompt is required",
       },
       {
-        status:400,
+        status: 400,
       },
     );
 
   }
 
 
-
   const result =
-    tutorService.ask(
+    await tutorService.ask(
+      DEMO_STUDENT_ID,
       prompt,
     );
-
 
 
   return Response.json(

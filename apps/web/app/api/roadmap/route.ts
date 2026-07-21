@@ -4,6 +4,11 @@ import {
 } from "@/lib/services";
 
 
+import {
+  DEMO_STUDENT_ID,
+} from "@/lib/constants/demo";
+
+
 import type {
   ConceptInput,
 } from "@sakshion/roadmap";
@@ -14,15 +19,22 @@ export async function GET() {
 
 
   const diagnostic =
-    diagnosticService.runDiagnostic(
-      "demo-student",
+    await diagnosticService.runDiagnostic(
+      DEMO_STUDENT_ID,
     );
+
+
+  const recommendedConcepts =
+    diagnostic.recommendedConcepts ?? [];
 
 
 
   const concepts: ConceptInput[] =
-    diagnostic.recommendedConcepts.map(
-      (conceptId,index)=>({
+    recommendedConcepts.map(
+      (
+        conceptId,
+        index,
+      ) => ({
 
         conceptId,
 
@@ -43,12 +55,11 @@ export async function GET() {
   const roadmap =
     roadmapService.generate(
 
-      "demo-student",
+      DEMO_STUDENT_ID,
 
       concepts,
 
     );
-
 
 
   return Response.json(

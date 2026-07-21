@@ -2,12 +2,16 @@ import {
   diagnosticService,
 } from "@/lib/services";
 
+import {
+  DEMO_STUDENT_ID,
+} from "@/lib/constants/demo";
+
 
 export async function GET() {
 
   const result =
-    diagnosticService.runDiagnostic(
-      "demo-student",
+    await diagnosticService.runDiagnostic(
+      DEMO_STUDENT_ID,
     );
 
 

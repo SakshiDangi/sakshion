@@ -5,3 +5,4 @@ export * from "./PracticeResponse";
 export * from "./RoadmapResponse";
 export * from "./TutorResponse";
 export * from "./VerificationResponse";
+export * from "./ConceptInput";

@@ -1,5 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Link from 'next/link';
 import {
   Search,
@@ -18,27 +22,90 @@ import {
 
 interface TopbarProps {
   onMenuToggle: () => void;
-  userRole: 'learner' | 'instructor';
+  userRole: "learner" | "instructor";
+
+  user?: {
+    name: string;
+    email: string;
+    initials: string;
+    xp?: number;
+  };
 }
 
-const learnerNotifications = [
-  { id: 'notif-001', title: 'Mission Completed!', body: 'You finished "React Hooks Deep Dive"', time: '2m ago', read: false, type: 'success' },
-  { id: 'notif-002', title: 'New Achievement', body: 'Earned "7-Day Streak" badge 🔥', time: '1h ago', read: false, type: 'achievement' },
-  { id: 'notif-003', title: 'Cohort Update', body: 'Your instructor posted new content', time: '3h ago', read: true, type: 'info' },
+const notifications = [
+  {
+    id: "1",
+    title: "Diagnostic completed",
+    body: "Your learning profile has been updated.",
+    time: "5m ago",
+    read: false,
+    type: "success",
+  },
+  {
+    id: "2",
+    title: "Roadmap updated",
+    body: "A new learning node has been unlocked.",
+    time: "30m ago",
+    read: false,
+    type: "info",
+  },
+  {
+    id: "3",
+    title: "Verification complete",
+    body: "Latest learning session has been verified.",
+    time: "2h ago",
+    read: true,
+    type: "success",
+  },
 ];
 
-const instructorNotifications = [
-  { id: 'notif-i-001', title: 'Student at Risk', body: 'Arjun Mehta has not logged in for 5 days', time: '30m ago', read: false, type: 'danger' },
-  { id: 'notif-i-002', title: 'Cohort Milestone', body: 'Cohort B reached 75% completion', time: '2h ago', read: false, type: 'success' },
-  { id: 'notif-i-003', title: 'New Enrollment', body: '3 new students joined "Advanced ML"', time: '5h ago', read: true, type: 'info' },
-];
+export default function Topbar({
+  onMenuToggle,
+  userRole,
+  user,
+}: TopbarProps) {
+  const [openMenu, setOpenMenu] =
+    useState<"notifications" | "profile" | null>(
+      null,
+    );
 
-export default function Topbar({ onMenuToggle, userRole }: TopbarProps) {
-  const [notifOpen, setNotifOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false);
-  const [searchFocused, setSearchFocused] = useState(false);
+  const currentUser = user ?? {
+    name: "Student",
+    email: "student@sakshion.ai",
+    initials: "ST",
+    xp: 0,
+  };
 
-  const notifications = userRole === 'learner' ? learnerNotifications : instructorNotifications;
+  const menuRef =
+  useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+    function handleClickOutside(
+      event: MouseEvent,
+    ) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(
+          event.target as Node,
+        )
+      ) {
+        setOpenMenu(null);
+      }
+    }
+  
+    document.addEventListener(
+      "mousedown",
+      handleClickOutside,
+    );
+  
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside,
+      );
+    };
+  }, []);
+
   const unreadCount = notifications.filter(n => !n.read).length;
 
   const notifTypeColor: Record<string, string> = {
@@ -59,20 +126,29 @@ export default function Topbar({ onMenuToggle, userRole }: TopbarProps) {
       </button>
 
       {/* Search */}
-      <div className={`flex-1 max-w-md relative transition-all duration-200 ${searchFocused ? 'max-w-lg' : ''}`}>
-        <div className={`
-          flex items-center gap-2 px-3 py-2 rounded-[10px] border transition-all duration-200
-          ${searchFocused
-            ? 'bg-surface-elevated border-primary/40 shadow-glow-primary'
-            : 'bg-surface-elevated border-border hover:border-border/80'
-          }
-        `}>
+      <div className="flex-1 max-w-md relative">
+        <div
+          className="
+            flex
+            items-center
+            gap-2
+            px-3
+            py-2
+            rounded-[10px]
+            border
+            bg-surface-elevated
+            border-border
+            hover:border-border/80
+            focus-within:border-primary/40
+            focus-within:shadow-glow-primary
+            transition-all
+            duration-200
+          "
+        >
           <Search size={15} className="text-muted-foreground flex-shrink-0" />
           <input
             type="text"
             placeholder="Search missions, paths, topics..."
-            onFocus={() => setSearchFocused(true)}
-            onBlur={() => setSearchFocused(false)}
             className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
           />
           <div className="flex items-center gap-1 flex-shrink-0">
@@ -83,19 +159,28 @@ export default function Topbar({ onMenuToggle, userRole }: TopbarProps) {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 ml-auto">
+      <div
+        ref={menuRef}
+        className="flex items-center gap-2 ml-auto"
+      >
         {/* XP indicator — learner only */}
         {userRole === 'learner' && (
           <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-warning/10 border border-warning/20">
             <Zap size={13} className="text-warning" />
-            <span className="text-xs font-600 text-warning tabular-nums">4,820 XP</span>
+            <span className="text-xs font-600 text-warning tabular-nums">{currentUser.xp?.toLocaleString()} XP</span>
           </div>
         )}
 
         {/* Notifications */}
         <div className="relative">
           <button
-            onClick={() => { setNotifOpen(!notifOpen); setProfileOpen(false); }}
+            onClick={() =>
+              setOpenMenu(
+                openMenu === "notifications"
+                  ? null
+                  : "notifications",
+              )
+            }
             className="relative p-2 rounded-[10px] text-muted-foreground hover:text-foreground hover:bg-surface-elevated transition-all"
           >
             <Bell size={18} />
@@ -106,7 +191,7 @@ export default function Topbar({ onMenuToggle, userRole }: TopbarProps) {
             )}
           </button>
 
-          {notifOpen && (
+          {openMenu === "notifications" && (
             <div className="absolute right-0 top-full mt-2 w-80 surface-glass-elevated rounded-[14px] shadow-modal overflow-hidden z-50 scale-in">
               <div className="flex items-center justify-between px-4 py-3 border-b border-border">
                 <span className="text-sm font-600 text-foreground">Notifications</span>
@@ -114,7 +199,7 @@ export default function Topbar({ onMenuToggle, userRole }: TopbarProps) {
                   {unreadCount > 0 && (
                     <span className="text-2xs font-600 px-1.5 py-0.5 rounded-full bg-primary/20 text-primary">{unreadCount} new</span>
                   )}
-                  <button onClick={() => setNotifOpen(false)} className="text-muted-foreground hover:text-foreground">
+                  <button onClick={() => setOpenMenu(null)} className="text-muted-foreground hover:text-foreground">
                     <X size={14} />
                   </button>
                 </div>
@@ -144,31 +229,37 @@ export default function Topbar({ onMenuToggle, userRole }: TopbarProps) {
         {/* Profile */}
         <div className="relative">
           <button
-            onClick={() => { setProfileOpen(!profileOpen); setNotifOpen(false); }}
+            onClick={() =>
+              setOpenMenu(
+                openMenu === "profile"
+                  ? null
+                  : "profile",
+              )
+            }
             className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-[10px] hover:bg-surface-elevated transition-all"
           >
             <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center flex-shrink-0">
               <span className="text-xs font-700 text-white">
-                {userRole === 'learner' ? 'KS' : 'PM'}
+                {currentUser.initials}
               </span>
             </div>
             <div className="hidden md:block text-left">
               <p className="text-sm font-600 text-foreground leading-tight">
-                {userRole === 'learner' ? 'Kiran Sharma' : 'Priya Malhotra'}
+                {currentUser.name}
               </p>
               <p className="text-2xs text-muted-foreground capitalize">{userRole}</p>
             </div>
             <ChevronDown size={14} className="text-muted-foreground hidden md:block" />
           </button>
 
-          {profileOpen && (
+          {openMenu === "profile" && (
             <div className="absolute right-0 top-full mt-2 w-52 surface-glass-elevated rounded-[14px] shadow-modal overflow-hidden z-50 scale-in">
               <div className="px-4 py-3 border-b border-border">
                 <p className="text-sm font-600 text-foreground">
-                  {userRole === 'learner' ? 'Kiran Sharma' : 'Priya Malhotra'}
+                  {currentUser.name}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {userRole === 'learner' ? 'kiran@example.dev' : 'priya@example.dev'}
+                  {currentUser.email}
                 </p>
               </div>
               <div className="py-1">

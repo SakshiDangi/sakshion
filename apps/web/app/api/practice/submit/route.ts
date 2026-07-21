@@ -1,22 +1,10 @@
 import {
   practiceService,
   practiceSessionManager,
+  practiceRepository,
+  masteryRepository,
+  learningEventRepository,
 } from "@/lib/services";
-
-import {
-  PracticeRepository,
-  MasteryRepository,
-  LearningEventRepository,
-} from "@sakshion/database";
-
-const practiceRepository =
-  new PracticeRepository();
-
-const masteryRepository =
-  new MasteryRepository();
-
-const learningEventRepository =
-  new LearningEventRepository();
 
 export async function POST(
   request: Request,
@@ -90,15 +78,24 @@ export async function POST(
       });
     }
 
-    const masteryBefore = 80;
-    const confidenceBefore = 90;
+    const existing =
+      await masteryRepository.findByStudentAndConcept(
+        session.studentId,
+        session.conceptId,
+      );
+    
+    const masteryBefore =
+      existing?.mastery ?? 0;
+    
+    const confidenceBefore =
+      existing?.confidence ?? 50;
 
     const result =
-      practiceService.completePractice(
-        session,
-        masteryBefore,
-        confidenceBefore,
-      );
+    await practiceService.completePractice(
+      session,
+      masteryBefore,
+      confidenceBefore,
+    );
 
     await practiceRepository.create({
       studentId:

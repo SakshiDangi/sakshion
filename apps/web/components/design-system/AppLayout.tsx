@@ -5,11 +5,23 @@ import Topbar from './Topbar';
 
 interface AppLayoutProps {
   children: React.ReactNode;
-  userRole?: 'learner' | 'instructor';
+
+  userRole?: "learner" | "instructor";
+
+  user?: {
+    name: string;
+    email: string;
+    initials: string;
+    xp?: number;
+  };
 }
 
-export default function AppLayout({ children, userRole = 'learner' }: AppLayoutProps) {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+export default function AppLayout({
+  children,
+  userRole = "learner",
+  user,
+}: AppLayoutProps) {
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
     <div className="flex h-screen bg-background overflow-hidden">
@@ -22,8 +34,11 @@ export default function AppLayout({ children, userRole = 'learner' }: AppLayoutP
         className="flex flex-col flex-1 min-w-0 transition-all duration-300 ease-spring"
       >
         <Topbar
-          onMenuToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+          onMenuToggle={() =>
+            setSidebarCollapsed(!sidebarCollapsed)
+          }
           userRole={userRole}
+          {...(user ? { user } : {})}
         />
         <main className="flex-1 overflow-y-auto overflow-x-hidden">
           <div className="px-6 lg:px-8 xl:px-10 2xl:px-12 py-8 max-w-screen-2xl mx-auto">

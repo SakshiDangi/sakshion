@@ -28,19 +28,13 @@ import {
   LearningEventRepository,
 } from "@sakshion/database";
 
-
-
 const questionRepository =
   new InMemoryQuestionRepository();
-
-
 
 const questionSelector =
   new QuestionSelector(
     questionRepository,
   );
-
-
 
 const practiceGenerator =
   new PracticeGenerator(
